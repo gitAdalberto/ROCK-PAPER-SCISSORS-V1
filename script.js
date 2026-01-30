@@ -3,6 +3,7 @@ console.log("Hola mundo")
 const arrayOptions = ["piedra","papel","tijeras"];
 let humanScore = 0;
 let computerScore = 0;
+let finish = false;
 
 function getComputerChoice() {
     const random = Math.random().toPrecision(1);
@@ -47,36 +48,45 @@ function playRound(humanChoice, computerChoice){
         return "Parece que hubo un empate";
     }
 
+
+    const elections = document.querySelector("#elections");
+    elections.textContent = `el humano a elegido ${humanChoice} y la computadora ${computerChoice}`;
     console.log(`el humano a elegido ${humanChoice} y la computadora ${computerChoice}`);
 
     if (humanChoice === "piedra" && computerChoice === "tijeras") {
         humanScore = humanScore + 1;
         return "Tu ganas! Piedra vence tijeras";
+        
     }
 
     if (humanChoice === "tijeras" && computerChoice === "piedra") {
         computerScore = computerScore + 1;
-        return "Tu pierdes! Piedra vence tijeras";
+        return  "Tu pierdes! Piedra vence tijeras";
+        
     }
 
     if (humanChoice === "tijeras" && computerChoice === "papel") {
         humanScore = humanScore + 1;
-        return "Tu ganas! tijeras vencen papel";
-    }
+        return  "Tu ganas! tijeras vencen papel";
+        
+   }
 
     if (humanChoice === "papel" && computerChoice === "tijeras") {
         computerScore = computerScore + 1;
-        return "Tu pierdes! tijeras vencen papel";
+         return "Tu pierdes! tijeras vencen papel";
+        
     }
 
     if (humanChoice === "piedra" && computerChoice === "papel") {
-        humanScore = humanScore + 1;
+        computerScore = computerScore + 1;
         return "Tu pierdes! papel vence piedra";
-    }
+        
+  }
 
     if (humanChoice === "papel" && computerChoice === "piedra") {
-        computerScore = computerScore + 1;
+        humanScore = humanScore + 1;
         return "Tu ganas! papel vence piedra";
+        
     }
 }
 
@@ -105,5 +115,54 @@ function playGame() {
 
 }
 
-playGame();
+function test(e) {
+    
+    const humanChoice = e.target.getAttribute("id");
+    const computerChoice = getComputerChoice();
+
+    const computer = document.querySelector("#computer");
+    console.log(computer);
+    computer.textContent = computerChoice;
+
+    const statusText = playRound(humanChoice, computerChoice);
+
+    const status = document.querySelector("#status");
+    status.textContent = statusText;
+
+    const humanScoreText = document.querySelector("#human-score");
+    humanScoreText.textContent = humanScore;
+
+    const computerScoreText = document.querySelector("#computer-score");
+    computerScoreText.textContent = computerScore;
+
+    if (humanScore === 5) {
+        const result = document.querySelector("#result");
+        result.textContent = "El humano ha ganado";
+        humanScore = 0;
+        computerScore = 0;
+        humanScoreText.textContent = humanScore;
+        computerScoreText.textContent = computerScore;
+        return;
+    }
+
+    if (computerScore === 5) {
+        const result = document.querySelector("#result");
+        result.textContent = "La maquina ha ganado";
+        humanScore = 0;
+        computerScore = 0;
+        humanScoreText.textContent = humanScore;
+        computerScoreText.textContent = computerScore;
+        return;
+    }
+
+    const result = document.querySelector("#result");
+    result.textContent = "";
+}
+
+const buttons = document.querySelector("#buttons")
+const buttonsList = buttons.querySelectorAll("button")
+buttonsList.forEach(button => {
+    button.addEventListener("click",test)
+});
+
 

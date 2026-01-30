@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hola</title>
-    <script src="script.js" ></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div id="buttons" class="buttons">
+            <button id="piedra">Piedra</button>
+            <button id="papel">Papel</button>
+            <button id="tijeras">Tijera</button>
+        </div>
+        <div class="content">
+            <p>La maquina ha elegido:</p>
+            <p id="computer">?</p>
+        </div>
+        <p id="elections"></p>
+        <p id="status"></p>
+        <div id="scores">
+            <p id="human-score">0</p>
+            <p id="computer-score">0</p>
+        </div>
+        <p id="result"></p>   
+    </div>
 </body>
 </html>
