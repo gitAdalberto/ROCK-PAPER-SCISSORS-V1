@@ -109,7 +109,7 @@ function playGame() {
         console.log("El humano gana");
         console.log({ humanScore, computerScore });
     } else {
-        console.log("La computadora gana");
+        console.log("La computadora ganaa");
         console.log({ humanScore, computerScore });
     }
 
